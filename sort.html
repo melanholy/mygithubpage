@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <style type="text/css">
+        table {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        td {
+            border: 1px solid black;
+            width: 100px;
+            text-align: center;
+        }
+        .clickable:hover {
+            cursor: pointer;
+        }
+    </style>
+    <script type="text/javascript">
+        function getColumnByNumber(row, number) {
+            var count = 0;
+            for (var i = 0; i < row.childNodes.length; i++) {
+                if (row.childNodes[i].nodeName === 'TD') {
+                    if (count === number) {
+                        return row.childNodes[i];
+                    }
+                    count++;
+                }
+            }
+        }
+
+        function bubbleSortStrings(elements, direction) {
+            if (direction === 0)
+                return;
+            do {
+                var swapped = false;
+                for (var i = 0; i < elements.length-1; i++) {
+                    var res = elements[i].localeCompare(elements[i+1]);
+                    if (res !== 0) {
+                        res = res < 0 ? -1 : 1;
+                    }
+
+                    if (res === direction) {
+                        var temp = elements[i+1];
+                        elements[i+1] = elements[i];
+                        elements[i] = temp;
+                        swapped = true;
+                    }
+                }
+            } while (swapped);
+        }
+
+        function getColumnValues(table, columnNumber) {
+            var values = [];
+            for (var i = 0; i < table.childNodes.length; i++) {
+                if (table.childNodes[i].nodeName == 'TR') {
+                    var col = getColumnByNumber(table.childNodes[i], columnNumber);
+                    values.push(col.innerHTML);
+                }
+            }
+            return values;
+        }
+
+        function setColumnValues(table, columnNumber, values) {
+            var count = 0;
+            for (var i = 0; i < table.childNodes.length; i++) {
+                if (table.childNodes[i].nodeName == 'TR') {
+                    var col = getColumnByNumber(table.childNodes[i], columnNumber);
+                    col.innerHTML = values[count];
+                    count++;
+                }
+            }
+        }
+
+        function sortColumn(columnNumber, direction) {
+            var table = document.getElementsByTagName('tbody')[0];
+            var values = getColumnValues(table, columnNumber);
+
+            console.log(values);
+
+            var sorted = values.slice(1);
+            bubbleSortStrings(sorted, direction);
+            sorted.unshift(values[0]);
+
+            console.log(sorted);
+
+            setColumnValues(table, columnNumber, sorted);
+        }
+
+        function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min)) + min;
+        }
+
+        function reallySortEverything() {
+            var tds = document.getElementsByTagName('td');
+            for (var i = 0; i < 100; i++) {
+                var a = getRandomInt(0, tds.length);
+                var b = getRandomInt(0, tds.length);
+                var temp = tds[a].innerHTML;
+                tds[a].innerHTML = tds[b].innerHTML;
+                tds[b].innerHTML = temp;
+                tds[a].style.color = '#' + getRandomInt(0, 999999);
+                tds[b].style.color = '#' + getRandomInt(0, 999999);
+                tds[a].style.backgroundColor = '#' + getRandomInt(0, 999999);
+                tds[b].style.backgroundColor = '#' + getRandomInt(0, 999999);
+            }
+        }
+    </script>
+</head>
+<body>
+	<table>
+        <tr>
+            <td onclick="sortColumn(0, 1)" class="clickable">Сортировать</td>
+            <td onclick="sortColumn(1, -1)" class="clickable">Сортировать в обратном порядке</td>
+            <td onclick="sortColumn(2, 0)" class="clickable">Оставить как есть</td>
+            <td onclick="reallySortEverything()" class="clickable">Сделать не пойми что</td>
+        </tr>
+        <tr><td>2</td><td>2</td><td>2</td><td>2</td></tr>
+        <tr><td>4</td><td>4</td><td>4</td><td>4</td></tr>
+        <tr><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+        <tr><td>9</td><td>9</td><td>9</td><td>9</td></tr>
+        <tr><td>7</td><td>7</td><td>7</td><td>7</td></tr>
+        <tr><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+        <tr><td>5</td><td>5</td><td>5</td><td>5</td></tr>
+        <tr><td>6</td><td>6</td><td>6</td><td>6</td></tr>
+        <tr><td>3</td><td>3</td><td>3</td><td>3</td></tr>
+    </table>
+</body>
+</html>

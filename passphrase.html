@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Секретное слово</title>
+    <script type="text/javascript" src="scripts.js"></script>
+    <script type="text/javascript">
+        var right = 0;
+        document.onkeydown = function(event) {
+            if (event.keyCode == 69 && right == 0 ||
+                event.keyCode == 72 && (right == 1 || right == 2) ||
+                event.keyCode == 66 && right == 3 ||
+                event.keyCode == 78 && right == 4 ||
+                event.keyCode == 74 && right == 5) {
+                right++;
+            }
+            else {
+                right = 0;
+            }
+            if (right == 6)
+                payload();
+    }
+    </script>
+</head>
+<body>
+    Секретное слово - буррито
+</body>
+</html>

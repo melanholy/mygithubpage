@@ -48,32 +48,43 @@
         {
             0%
             {
-                top: 75px;
-                left: 760px;
+                top: 66px;
+                left: 960px;
             }
             50%
             {
-                left: 344px;
-                top: 75px;
+                left: 328px;
+                top: 66px;
                 transform: rotate(0deg);
             }
             60%
             {
-                left: 344px;
+                left: 328px;
                 top: 75px;
                 transform: rotate(-90deg);
             }
             100%
             {
-                left: 344px;
+                left: 200px;
                 top: 800px;
             }
+        }
+
+        .canv
+        {
+            width: 960px;
+            height: 569px;
+            position: absolute;
+            overflow: hidden;
+            border: 1px solid #000;
         }
     </style>
 </head>
 <body>
-    <div class="ice"></div>
-    <div class="ship"></div>
-    <div class="sea"></div>
+    <div class="canv">
+        <div class="ice"></div>
+        <div class="ship"></div>
+        <div class="sea"></div>
+    </div>
 </body>
 </html>

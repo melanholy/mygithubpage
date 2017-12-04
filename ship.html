@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>Задача «Морда»</title>
+    <style type="text/css">
+        .ice
+        {
+            background: url(ice.png);
+            width: 334px;
+            height: 569px;
+            position: absolute;
+            left: 10px;
+            animation: ice 4s linear infinite;
+        }
+
+        @keyframes ice
+        {
+            0%,
+            100%
+            {
+                top: 20px;
+            }
+            50%
+            {
+                top: -10px;
+            }
+        }
+
+        .sea
+        {
+            background: url(sea.png);
+            position: absolute;
+            width: 960px;
+            height: 569px;
+        }
+
+        .ship
+        {
+            background: url(ship.png);
+            width: 200px;
+            height: 133px;
+            position: absolute;
+            animation: ship 10s linear infinite;
+        }
+
+        @keyframes ship
+        {
+            0%
+            {
+                top: 75px;
+                left: 760px;
+            }
+            50%
+            {
+                left: 344px;
+                top: 75px;
+                transform: rotate(0deg);
+            }
+            60%
+            {
+                left: 344px;
+                top: 75px;
+                transform: rotate(-90deg);
+            }
+            100%
+            {
+                left: 344px;
+                top: 800px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="ice"></div>
+    <div class="ship"></div>
+    <div class="sea"></div>
+</body>
+</html>
